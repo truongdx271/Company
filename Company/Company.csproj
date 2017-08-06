@@ -49,6 +49,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Model">
+      <HintPath>..\Model\bin\Debug\Model.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -164,30 +175,94 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Common\CommonConstants.cs" />
+    <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="assets\admin\css\bootstrap-datepicker3.min.css" />
+    <Content Include="assets\admin\css\bootstrap.min.css" />
+    <Content Include="assets\admin\css\font-awesome.css" />
+    <Content Include="assets\admin\css\font.css" />
+    <Content Include="assets\admin\css\jqvmap.css" />
+    <Content Include="assets\admin\css\lightbox.css" />
+    <Content Include="assets\admin\css\minimal.css" />
+    <Content Include="assets\admin\css\monthly.css" />
+    <Content Include="assets\admin\css\morris.css" />
+    <Content Include="assets\admin\css\style-responsive.css" />
+    <Content Include="assets\admin\css\style.css" />
+    <Content Include="assets\admin\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\admin\images\1.png" />
+    <Content Include="assets\admin\images\2.png" />
+    <Content Include="assets\admin\images\3.png" />
+    <Content Include="assets\admin\images\bg.jpg" />
+    <Content Include="assets\admin\images\close.png" />
+    <Content Include="assets\admin\images\g1.jpg" />
+    <Content Include="assets\admin\images\g2.jpg" />
+    <Content Include="assets\admin\images\g3.jpg" />
+    <Content Include="assets\admin\images\g4.jpg" />
+    <Content Include="assets\admin\images\g5.jpg" />
+    <Content Include="assets\admin\images\g6.jpg" />
+    <Content Include="assets\admin\images\g7.jpg" />
+    <Content Include="assets\admin\images\g8.jpg" />
+    <Content Include="assets\admin\images\g9.jpg" />
+    <Content Include="assets\admin\images\mail.png" />
+    <Content Include="assets\admin\images\minimal.png" />
+    <Content Include="assets\admin\images\nav-expand.png" />
+    <Content Include="assets\admin\images\next.png" />
+    <Content Include="assets\admin\images\pass.png" />
+    <Content Include="assets\admin\images\prev.png" />
+    <Content Include="assets\admin\images\search-icon.png" />
+    <Content Include="assets\admin\js\bootstrap-datepicker.min.js" />
+    <Content Include="assets\admin\js\bootstrap.js" />
+    <Content Include="assets\admin\js\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="assets\admin\js\jquery.fileupload.js" />
+    <Content Include="assets\admin\js\jquery.min.js" />
+    <Content Include="assets\admin\js\jquery.nicescroll.js" />
+    <Content Include="assets\admin\js\jquery.scrollTo.js" />
+    <Content Include="assets\admin\js\jquery.slimscroll.js" />
+    <Content Include="assets\admin\js\jquery.vmap.asia.js" />
+    <Content Include="assets\admin\js\jquery.vmap.australia.js" />
+    <Content Include="assets\admin\js\jquery.vmap.europe.js" />
+    <Content Include="assets\admin\js\jquery.vmap.js" />
+    <Content Include="assets\admin\js\jquery.vmap.sampledata.js" />
+    <Content Include="assets\admin\js\jquery.vmap.world.js" />
+    <Content Include="assets\admin\js\jquery2.0.3.min.js" />
+    <Content Include="assets\admin\js\lightbox-plus-jquery.min.js" />
+    <Content Include="assets\admin\js\monthly.js" />
+    <Content Include="assets\admin\js\morris.js" />
+    <Content Include="assets\admin\js\raphael-min.js" />
+    <Content Include="assets\admin\js\script.js" />
+    <Content Include="assets\admin\js\scripts.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="assets\admin\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\admin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\admin\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\admin\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\admin\fonts\FontAwesome.otf" />
+    <Content Include="assets\admin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\admin\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -237,6 +312,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="assets\client\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

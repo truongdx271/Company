@@ -1,0 +1,92 @@
+﻿@model PagedList.IPagedList<Model.EF.User>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Danh sách người dùng
+        </div>
+        <div class="row w3-res-tb">
+            <div class="col-sm-5 m-b-xs">
+                <a href="/Admin/User/Create" class="btn btn-sm btn-default">Thêm mới</a>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-3">
+                @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                {
+                    <div class="input-group">
+                        <input type="text" class="input-sm form-control" placeholder="Search" value="@ViewBag.searchString" name="searchString">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit">Go!</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>Tài khoản</th>
+                        <th>Họ và tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th style="width:75px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.Id">
+                            <td>@item.UserName</td>
+                            <td>@item.Name</td>
+                            <td>@(item.Birthday.HasValue? item.Birthday.Value.ToString("dd/MM/yyyy") : " " )</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Address</td>
+                            <td>@item.Email</td>
+                            <td>
+                                <a href="/Admin/User/Edit/@item.Id"><i class="fa fa-edit fa-lg text-success text-active"></i></a>
+
+                                @Ajax.ActionLink(" ", "Delete", new { @id = item.Id }, new AjaxOptions
+                                {
+                                    Confirm = "Bạn có chắc chắn muốn xóa?",
+                                    OnComplete = "$('#row_" + @item.Id + "').remove()",
+                                    HttpMethod = "Delete"
+                                }, new { @class = "fa fa-times fa-lg text-danger text" })
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+
+                <div class="col-sm-5 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+                </div>
+                <div class="col-sm-7 text-right text-center-xs">
+                    @*<ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">4</a></li>
+                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>*@
+                    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, @searchString = @ViewBag.searchString }))
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
