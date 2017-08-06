@@ -57,5 +57,6 @@
 
         [Display(Name = "Trạng thái")]
         public bool Status { get; set; }
+        public bool Deleted { get; set; }
     }
 }

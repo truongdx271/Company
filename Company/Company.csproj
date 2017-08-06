@@ -225,6 +225,7 @@
     <Content Include="assets\admin\images\search-icon.png" />
     <Content Include="assets\admin\js\bootstrap-datepicker.min.js" />
     <Content Include="assets\admin\js\bootstrap.js" />
+    <Content Include="assets\admin\js\controller\userController.js" />
     <Content Include="assets\admin\js\jquery.dcjqaccordion.2.7.js" />
     <Content Include="assets\admin\js\jquery.fileupload.js" />
     <Content Include="assets\admin\js\jquery.min.js" />
@@ -263,10 +264,13 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

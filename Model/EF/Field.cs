@@ -37,5 +37,7 @@ namespace Model.EF
         public long? ModifiedBy { get; set; }
 
         public bool Status { get; set; }
+
+        public bool Deleted { get; set; }
     }
 }
