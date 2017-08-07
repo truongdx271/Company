@@ -1,0 +1,78 @@
+﻿@model Model.EF.Article
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter{
+    <script>
+        var editor = CKEDITOR.replace('txtContent', {
+            customConfig: '/assets/admin/js/plugin/ckeditor/config.js',
+        });
+    </script>
+}
+
+<div class="form-w3layouts">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Viết bài
+                </header>
+                <div class="panel-body">
+                    <div class="form">
+                        @using (Html.BeginForm("Create", "Article", FormMethod.Post, new { @class = "cmxform form-horizontal " }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Title, new { @class = "control-label col-lg-2" })
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Title)
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.MetaTitle, new { @class = "control-label col-lg-2" })
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MetaTitle)
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.MenuId, new { @class = "control-label col-lg-2" })
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(model => model.MenuId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MenuId)
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Content, new { @class = "control-label col-lg-2" })
+                                <div class="col-lg-10">
+                                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @id= "txtContent" })
+                                    @Html.ValidationMessageFor(model => model.Content)
+                                </div>
+                            </div>
+
+                           
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-3 col-lg-6">
+                                    <button class="btn btn-primary" type="submit">Lưu</button>
+                                    <button class="btn btn-default" type="button">Hủy</button>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

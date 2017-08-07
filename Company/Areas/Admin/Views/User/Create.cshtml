@@ -11,6 +11,20 @@
             endDate: '-3d'
         });
     </script>
+    <script>
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+            };
+            finder.popup();
+
+            //var editor = CKEDITOR.replace('txtContent', {
+            //    customConfig: '/Assets/Admin/js/pluggins/ckeditor/config.js',
+            //});
+        })
+    </script>
 }
 
 <div class="form-w3layouts">
@@ -82,6 +96,20 @@
                                 <div class="col-lg-6">
                                     @Html.TextBoxFor(model => model.Birthday, new { @class = "datepicker form-control" })
                                     @Html.ValidationMessageFor(model => model.Birthday)
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Avatar, new { @class = "control-label col-lg-3" })
+                                <div class="col-lg-6">
+                                    <div class="input-group m-bot15">
+                                        @Html.TextBoxFor(model => model.Avatar, new { @class = "form-control", @id = "txtImage", @placeholder = ".col-lg-4" })
+                                        @Html.ValidationMessageFor(model => model.Avatar)
+                                        <span class="input-group-btn">
+                                            <a id="btnSelectImage" class="btn btn-success" href="#">Chọn ảnh</a>
+                                        </span>
+                                    </div>
+
                                 </div>
                             </div>
 
