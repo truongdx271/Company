@@ -1,0 +1,93 @@
+﻿@model PagedList.IPagedList<Company.Areas.Admin.Models.ArticleModel>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter{
+    <script src="~/assets/admin/js/controller/articleController.js"></script>
+}
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Danh sách bài viết
+        </div>
+        <div class="row w3-res-tb">
+            <div class="col-sm-5 m-b-xs">
+                <a href="/Admin/Article/Create" class="btn btn-sm btn-default">Thêm mới</a>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-3">
+                @using (Html.BeginForm("Index", "Article", FormMethod.Get))
+                {
+                    <div class="input-group">
+                        <input type="text" class="input-sm form-control" placeholder="Search" value="@ViewBag.searchString" name="searchString">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>Tiêu đề</th>
+                        <th>Meta Title</th>
+                        <th>Loại bài viết</th>
+                        <th>Nội dung</th>
+                        <th>Ngày viết</th>
+                        <th>Người viết</th>
+                        <th>Ngày sửa</th>
+                        <th>Người sửa</th>
+                        <th style="width:100px;">Trạng thái</th>
+                        <th style="width:75px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.Id">
+                            <td>@item.Title</td>
+                            <td>@item.MetaTitle</td>
+                            <td>@item.Content</td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.usrCreate</td>
+                            <td>@item.ModifiedDate</td>
+                            <td>@item.usrEdit</td>
+                            <td><a href="#" class="btn-active" data-id="@item.Id">@(item.Status ? "Kích hoạt" : "Khoá")</a></td>
+                            <td>
+                                <a href="/Admin/Article/Edit/@item.Id"><i class="fa fa-edit fa-lg text-success text-active"></i></a>
+
+                                @Ajax.ActionLink(" ", "Delete", new { @id = item.Id }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có chắc chắn muốn xóa?",
+                               OnComplete = "$('#row_" + @item.Id + "').remove()",
+                               HttpMethod = "Delete"
+                           }, new { @class = "fa fa-times fa-lg text-danger text" })
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+
+                <div class="col-sm-5 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">Hiển thị bản ghi @ViewBag.startRecord - @ViewBag.endRecord trong @ViewBag.totalRecord bản ghi</small>
+                </div>
+                <div class="col-sm-7 text-right text-center-xs">
+                    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, @searchString = @ViewBag.searchString }))
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+

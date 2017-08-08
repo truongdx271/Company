@@ -36,6 +36,20 @@ namespace Company.Areas.Admin.Controllers
                     endRecord = startRecord + pageSize - 1;
                 }
 
+                if (totalRecord < 5)
+                {
+                    if (totalRecord == 0)
+                    {
+                        startRecord = 0;
+                        endRecord = 0;
+                    }
+                    else
+                    {
+                        startRecord = 1;
+                        endRecord = totalRecord;
+                    }
+                }
+
                 ViewBag.startRecord = startRecord;
                 ViewBag.endRecord = endRecord;
                 ViewBag.totalRecord = totalRecord;

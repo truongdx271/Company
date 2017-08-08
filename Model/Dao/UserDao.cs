@@ -120,6 +120,7 @@ namespace Model.Dao
         {
             var user = db.Users.Find(id);
             user.Status = !user.Status;
+            user.ModifiedDate = DateTime.Now;
             db.SaveChanges();
             return user.Status;
         }

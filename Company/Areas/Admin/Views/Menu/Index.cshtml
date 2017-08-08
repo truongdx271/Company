@@ -1,0 +1,85 @@
+﻿@*@model Company.Areas.Admin.Models.MenuModel*@
+@model PagedList.IPagedList<Model.EF.Menu>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter{
+    <script src="~/assets/admin/js/controller/menuController.js"></script>
+}
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Danh sách menu
+        </div>
+        <div class="row w3-res-tb">
+            <div class="col-sm-5 m-b-xs">
+                <a href="/Admin/Menu/Create" class="btn btn-sm btn-default">Thêm mới</a>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-3">
+                @using (Html.BeginForm("Index", "Menu", FormMethod.Get))
+                {
+                    <div class="input-group">
+                        <input type="text" class="input-sm form-control" placeholder="Search" value="@ViewBag.searchString" name="searchString">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit">Tìm kiếm</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>Tên Menu</th>
+                        <th>Meta Title</th>
+                        <th>Đường dẫn</th>
+                        <th style="width:100px;">Trạng thái</th>
+                        <th style="width:75px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.Id">
+                            <td>@item.Text</td>
+                            <td>@item.MetaTitle</td>
+                            <td>@item.Link</td>
+                            <td><a href="#" class="btn-active" data-id="@item.Id">@(item.Status ? "Kích hoạt" : "Khoá")</a></td>
+                            <td>
+                                <a href="/Admin/Menu/Edit/@item.Id"><i class="fa fa-edit fa-lg text-success text-active"></i></a>
+
+                                @Ajax.ActionLink(" ", "Delete", new { @id = item.Id }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có chắc chắn muốn xóa?",
+                               OnComplete = "$('#row_" + @item.Id + "').remove()",
+                               HttpMethod = "Delete"
+                           }, new { @class = "fa fa-times fa-lg text-danger text" })
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+
+                <div class="col-sm-5 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">Hiển thị bản ghi @ViewBag.startRecord - @ViewBag.endRecord trong @ViewBag.totalRecord bản ghi</small>
+                </div>
+                <div class="col-sm-7 text-right text-center-xs">
+                    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, @searchString = @ViewBag.searchString }))
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+

@@ -3,9 +3,9 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
-CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
+CKEDITOR.editorConfig = function (config) {
+    // Define changes to default configuration here. For example:
+    // config.language = 'fr';
     // config.uiColor = '#AADC6E';
 
     config.syntaxhighlight_lang = 'csharp';
@@ -18,5 +18,13 @@ CKEDITOR.editorConfig = function( config ) {
     config.filebrowserImageUploadUrl = '/Data';
     config.filebrowserFlashUploadUrl = '/assets/admin/js/plugin/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
 
+    config.disallowedContent = 'script img p h1 h2 h3 pre strong';
+    //config.removePlugins = 'image,table,tabletools,horizontalrule';
+    //config.removeButtons = 'Anchor,Underline,Strike,Subscript,Superscript';
+    //config.format_tags = 'p;h1;h2;pre';
+
     CKFinder.setupCKEditor(null, '/assets/admin/js/plugin/ckfinder/');
+
+
 };
+

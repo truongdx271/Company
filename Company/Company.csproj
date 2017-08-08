@@ -180,8 +180,12 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\ArticleModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\MenuModel.cs" />
+    <Compile Include="Areas\Admin\Models\RegisterModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Global.asax.cs">
@@ -225,6 +229,8 @@
     <Content Include="assets\admin\images\search-icon.png" />
     <Content Include="assets\admin\js\bootstrap-datepicker.min.js" />
     <Content Include="assets\admin\js\bootstrap.js" />
+    <Content Include="assets\admin\js\controller\articleController.js" />
+    <Content Include="assets\admin\js\controller\menuController.js" />
     <Content Include="assets\admin\js\controller\userController.js" />
     <Content Include="assets\admin\js\jquery.dcjqaccordion.2.7.js" />
     <Content Include="assets\admin\js\jquery.fileupload.js" />
@@ -1304,6 +1310,10 @@
     <Content Include="assets\admin\js\plugin\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="assets\admin\js\plugin\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="assets\admin\js\plugin\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
